@@ -24,7 +24,7 @@ export const StyleContainer = styled.div`
 
   input {
     margin-left: 50px;
-    width: 73%;
+    width: 74%;
     padding: 5px;
     border-radius: 3px;
     border: 1px solid #D9D9D9;
@@ -37,13 +37,13 @@ export const StyleContainer = styled.div`
     border: none;
     background-color: #FFFFFF;
     position: absolute;
-    left: 75%;
+    left: 76%;
     margin-top: 5px;
     cursor: pointer;
 
     @media (max-width: 500px) {
       position: absolute;
-      left: 80%;
+      left: 83%;
     }
   }
 `
