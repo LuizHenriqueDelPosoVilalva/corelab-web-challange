@@ -7,15 +7,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>CoreNotas</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
-
-        <meta 
-          name ="description" 
-          content="Um projeto que lista tarefas descritas pelo usuario, com React, NextJs e TypeScript"
-          />
+        <title>CoreNotes</title>
       </Head>
       <GlobalStyles />
       <Component {...pageProps} />
