@@ -7,4 +7,8 @@ export const ContentCard = styled.div `
   box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.25);
   width: 390px;
   height: 437.588px;
+
+  @media (max-width: 450px) {
+    width: 300px;
+  }
 `
