@@ -12,9 +12,14 @@ const postSchema = Joi.object({
 
 const router = createHandle()
 
-router.post(validation({body:postSchema}), (req, res) => {
-  createPost(req.body)
-  res.status(200).json({ teste: true })
+router.post(validation({body:postSchema}), async (req, res) => {
+  try {
+    const create = await createPost(req.body)
+    res.status(201).json(create)
+  } catch (err) {
+    console.error(err)
+    throw err
+  }
 })
 
 export default router
