@@ -1,11 +1,7 @@
-interface post {
-  title: string,
-  text: string
-}
+import { IPost } from '../interface/postInterface'
 
-export const createPost: React.FC<post> = (body) => {
-  console.log(body.title)
-  console.log(body.text)
+export const createPost = (body: IPost) => {
+  console.log(body)
   return true
 }
 

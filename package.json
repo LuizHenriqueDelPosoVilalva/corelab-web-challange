@@ -12,6 +12,7 @@
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "joi": "^17.6.0",
+    "mongoose": "^6.2.4",
     "next": "13.4.7",
     "next-connect": "^0.12.2",
     "next-joi": "^2.2.1",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.22.5",
+    "@types/mongoose": "^5.11.97",
     "@types/next": "^9.0.0",
     "@types/node": "^20.3.1",
     "@types/react": "^18.2.14",
