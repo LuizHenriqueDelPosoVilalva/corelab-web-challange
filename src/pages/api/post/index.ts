@@ -1,19 +1,25 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { createRouter } from 'next-connect'
+import connect from 'next-connect'
+import Joi from 'joi'
 
-// Importe createPost e getPost corretamente a partir do caminho correto
+import validation from '../../../lib/middleware/validation'
 import { createPost, getPost } from '../../../modules/posts.service'
 
-const router = createRouter<NextApiRequest, NextApiResponse>()
-
-router.post('/', (req, res) => {
-  createPost()
-  res.status(200).json({ teste: true })
+const postSchema = Joi.object({
+  title: Joi.string().required().max(20),
+  text: Joi.string().required().max(200)
 })
 
-router.get('/', (req, res) => {
-  getPost()
-  res.status(200).json({ teste: true })
-})
+const router = connect<NextApiRequest, NextApiResponse>()
+
+  .post(validation({body:postSchema}), (req, res) => {
+    createPost(req.body)
+    res.status(200).json({ teste: true })
+  })
+
+  .get((req, res) => {
+    getPost()
+    res.status(200).json({ teste: true })
+  })
 
 export default router
