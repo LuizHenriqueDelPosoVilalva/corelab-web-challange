@@ -1,45 +1,60 @@
-import { useState, useRef, ChangeEvent, KeyboardEvent } from 'react';
+import { useState, useRef, useEffect, ChangeEvent, KeyboardEvent } from 'react'
+import axios from 'axios'
 
-import { Main, GetPosts, Taks } from './indexStyle';
+import { Main, GetPosts, Taks } from './indexStyle'
 
 import Navbar from '../components/nav/Navbar';
 import CreatePost from '../components/createPost/CreatePost';
 import Card from '../components/cards/Card';
 
 export default function Paginainicial() {
-  const [title, setTitle] = useState('');
-  const [task, setTask] = useState('');
-  const taskRef = useRef<HTMLTextAreaElement>(null);
+  const [title, setTitle] = useState('')
+  const [task, setTask] = useState('')
+  const taskRef = useRef<HTMLTextAreaElement>(null)
 
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.target.value);
+    setTitle(event.target.value)
   };
 
   const handleTaskChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setTask(event.target.value);
+    setTask(event.target.value)
   };
 
-  const handleKeyPress = (event: KeyboardEvent) => {
+  const handleKeyPress =  async (event: KeyboardEvent) => {
     if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault(); // Previne o comportamento padrão de adicionar uma nova linha
+      event.preventDefault() // Previne o comportamento padrão de adicionar uma nova linha
 
       if (event.target instanceof HTMLInputElement) {
         // Move o foco para o <textarea>
-        taskRef.current?.focus();
+        taskRef.current?.focus()
       } else {
         if (task.trim() !== '') {
-          console.log('Title:', title);
-          console.log('Task:', task);
-          // Aqui você pode enviar os dados para o banco de dados
+          // Aqui eu envio os dados para o banco de dados
           // usando as variáveis "title" e "task"
-
-          // Limpa os campos de entrada
-          setTitle('');
-          setTask('');
+          const data = {
+            title: title,
+            task: task
+          }
+        try {
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, data)
+            // Limpa os campos de entrada
+            setTitle('')
+            setTask('')
+          } catch(err) {
+            console.error(err)
+          }
         }
       }
     }
-  };
+  }
+
+  const handlePost = () => {
+    console.log("OPAAAAAA")
+  }
+
+  useEffect(() => {
+    handlePost()
+  }, [])
 
   return (
     <>
