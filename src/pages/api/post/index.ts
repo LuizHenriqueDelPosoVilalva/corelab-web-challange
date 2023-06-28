@@ -7,7 +7,7 @@ import { createPost } from '../../../modules/posts.service'
 
 const postSchema = Joi.object({
   title: Joi.string().required().max(20),
-  text: Joi.string().required().max(200)
+  task: Joi.string().required().max(200)
 })
 
 const router = createHandle()

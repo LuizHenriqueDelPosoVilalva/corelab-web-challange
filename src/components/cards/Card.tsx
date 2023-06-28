@@ -1,10 +1,10 @@
 import { ContentCard } from './StyleCard'
 
-interface CardProps {
+interface ICardProps {
   children: React.ReactNode;
 }
 
-const Card:React.FC<CardProps> = ({children}) => {
+const Card:React.FC<ICardProps> = ({children}) => {
   return (
     <ContentCard>
       {children}

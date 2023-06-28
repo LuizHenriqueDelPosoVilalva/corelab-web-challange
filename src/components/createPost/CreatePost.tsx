@@ -1,13 +1,14 @@
 import { ContainerCreatePost, ContentCreatePost } from './StyleCreatePost'
 
-function CreatePost () {
+interface ICreatePost {
+  children: React.ReactNode;
+}
+
+const CreatePost: React.FC<ICreatePost> = ({ children }) => {
   return (
     <ContainerCreatePost>
       <ContentCreatePost>
-        <form>
-          <input type="text" name="title" placeholder="Título"/>
-          <textarea name="task"/>
-        </form>
+       {children}
       </ContentCreatePost>
     </ContainerCreatePost>
   )
