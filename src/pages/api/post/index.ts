@@ -1,18 +1,12 @@
-import Joi from 'joi'
-
 import validation from '../../../lib/middleware/validation'
 import createHandle from '../../../lib/middleware/nextConnect'
 
 import { createPost } from '../../../modules/posts.service'
-
-const postSchema = Joi.object({
-  title: Joi.string().required().max(20),
-  task: Joi.string().required().max(200)
-})
+import { createPostSchema } from '../../../modules/post.schema'
 
 const router = createHandle()
 
-router.post(validation({body:postSchema}), async (req, res) => {
+router.post(validation({body:createPostSchema}), async (req, res) => {
   try {
     const create = await createPost(req.body)
     res.status(201).json(create)

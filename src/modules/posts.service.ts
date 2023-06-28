@@ -1,4 +1,4 @@
-import Post from './createPost.model'
+import Post from './Post.model'
 
 import { IPost } from '../interface/postInterface'
 
