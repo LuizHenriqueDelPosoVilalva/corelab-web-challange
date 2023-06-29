@@ -1,6 +1,6 @@
 import { useState, useRef, ChangeEvent, KeyboardEvent } from 'react'
 import axios from 'axios'
-import useSWR, {mutate} from 'swr'
+import useSWR, { mutate } from 'swr'
 
 import { IMapPost } from '../interface/postInterface'
 
@@ -15,6 +15,7 @@ const fetcher = (url: string) => axios.get(url).then(res => res.data)
 export default function Paginainicial() {
   const [title, setTitle] = useState('')
   const [task, setTask] = useState('')
+  const titleRef = useRef<HTMLInputElement>(null)
   const taskRef = useRef<HTMLTextAreaElement>(null)
 
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -25,13 +26,13 @@ export default function Paginainicial() {
     setTask(event.target.value)
   };
 
-  const handleKeyPress =  async (event: KeyboardEvent) => {
+  const handleKeyPress = async (event: KeyboardEvent) => {
     if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault() // Previne o comportamento padrão de adicionar uma nova linha
+      event.preventDefault(); // Previne o comportamento padrão de adicionar uma nova linha
 
       if (event.target instanceof HTMLInputElement) {
         // Move o foco para o <textarea>
-        taskRef.current?.focus()
+        taskRef.current?.focus();
       } else {
         if (task.trim() !== '') {
           // Aqui eu envio os dados para o banco de dados
@@ -40,7 +41,7 @@ export default function Paginainicial() {
             title: title,
             task: task
           }
-        try {
+          try {
             await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, data)
             // Limpa os campos de entrada
             setTitle('')
@@ -48,7 +49,10 @@ export default function Paginainicial() {
 
             // Chamar a função mutate para atualizar os dados em cache
             mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post?limit=6`)
-          } catch(err) {
+
+            // Mover o foco de volta para o <input>
+            titleRef.current?.focus();
+          } catch (err) {
             console.error(err)
           }
         }
@@ -69,6 +73,7 @@ export default function Paginainicial() {
             value={title}
             onChange={handleTitleChange}
             onKeyDown={handleKeyPress}
+            ref={titleRef}
           />
           <textarea
             name="task"
@@ -86,18 +91,16 @@ export default function Paginainicial() {
         <Taks>
           <h4>Outros</h4>
           <GetPosts>
-          {
-            data?.map((post: IMapPost) => (
-              <Card 
+            {data?.map((post: IMapPost) => (
+              <Card
                 key={post._id}
                 title={post.title}
                 task={post.task}
               />
-            ))
-          }
+            ))}
           </GetPosts>
         </Taks>
       </Main>
     </>
-  );
+  )
 }
