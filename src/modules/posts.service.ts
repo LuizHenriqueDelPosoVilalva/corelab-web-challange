@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongoose';
+
 import Post from './Post.model'
 
 import { IPost } from '../interface/postInterface'
@@ -15,4 +17,10 @@ export const getPosts = async (limit = 6) => {
     .populate('title')
     .sort({ createdDate: -1 })
     .limit(limit);
+}
+
+export const deletePost = async (id: ObjectId) => {
+  return await Post.findOneAndDelete({
+    _id: id,
+  })
 }

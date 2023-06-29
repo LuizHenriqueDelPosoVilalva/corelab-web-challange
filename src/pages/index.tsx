@@ -74,6 +74,7 @@ export default function Paginainicial() {
             onChange={handleTitleChange}
             onKeyDown={handleKeyPress}
             ref={titleRef}
+            maxLength={20}
           />
           <textarea
             name="task"
@@ -81,6 +82,7 @@ export default function Paginainicial() {
             value={task}
             onChange={handleTaskChange}
             onKeyDown={handleKeyPress}
+            maxLength={200}
           />
         </form>
       </CreatePost>
@@ -96,6 +98,7 @@ export default function Paginainicial() {
                 key={post._id}
                 title={post.title}
                 task={post.task}
+                id={post._id} 
               />
             ))}
           </GetPosts>

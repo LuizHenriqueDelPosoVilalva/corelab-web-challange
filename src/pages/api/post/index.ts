@@ -4,8 +4,8 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import validation from '../../../lib/middleware/validation'
 import createHandle from '../../../lib/middleware/nextConnect'
 
-import { createPost, getPosts } from '../../../modules/posts.service'
-import { createPostSchema } from '../../../modules/post.schema'
+import { createPost, getPosts, deletePost } from '../../../modules/posts.service'
+import { createPostSchema, deletePostSchema } from '../../../modules/post.schema'
 
 const handler = createHandle()
 
@@ -26,6 +26,19 @@ handler
       res.status(200).send(posts);
     } catch (err) {
       return res.status(500).send(err.message);
+    }
+  })
+
+  .delete(validation({body:deletePostSchema}), async (req: NextApiRequest, res: NextApiResponse) => {
+    try {
+      const deletedPost= await deletePost(req.body.id)
+      console.log("entrou aqui")
+      if(deletedPost)
+        return res.status(200).send({ ok: true })
+
+      return res.status(400).send('post not found')
+    }catch(err) {
+      return res.status(500).send(err.message)
     }
   })
   
