@@ -1,6 +1,6 @@
 import { useState, useRef, ChangeEvent, KeyboardEvent } from 'react'
 import axios from 'axios'
-import useSWR from 'swr'
+import useSWR, {mutate} from 'swr'
 
 import { IMapPost } from '../interface/postInterface'
 
@@ -45,6 +45,9 @@ export default function Paginainicial() {
             // Limpa os campos de entrada
             setTitle('')
             setTask('')
+
+            // Chamar a função mutate para atualizar os dados em cache
+            mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post?limit=6`)
           } catch(err) {
             console.error(err)
           }
