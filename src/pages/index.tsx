@@ -1,11 +1,16 @@
-import { useState, useRef, useEffect, ChangeEvent, KeyboardEvent } from 'react'
+import { useState, useRef, ChangeEvent, KeyboardEvent } from 'react'
 import axios from 'axios'
+import useSWR from 'swr'
+
+import { IMapPost } from '../interface/postInterface'
 
 import { Main, GetPosts, Taks } from './indexStyle'
 
 import Navbar from '../components/nav/Navbar';
 import CreatePost from '../components/createPost/CreatePost';
 import Card from '../components/cards/Card';
+
+const fetcher = (url: string) => axios.get(url).then(res => res.data)
 
 export default function Paginainicial() {
   const [title, setTitle] = useState('')
@@ -47,14 +52,7 @@ export default function Paginainicial() {
       }
     }
   }
-
-  const handlePost = () => {
-    console.log("OPAAAAAA")
-  }
-
-  useEffect(() => {
-    handlePost()
-  }, [])
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/post?limit=6`, fetcher)
 
   return (
     <>
@@ -85,9 +83,15 @@ export default function Paginainicial() {
         <Taks>
           <h4>Outros</h4>
           <GetPosts>
-            <Card>opa</Card>
-            <Card>opa</Card>
-            <Card>opa</Card>
+          {
+            data?.map((post: IMapPost) => (
+              <Card 
+                key={post._id}
+                title={post.title}
+                task={post.task}
+              />
+            ))
+          }
           </GetPosts>
         </Taks>
       </Main>

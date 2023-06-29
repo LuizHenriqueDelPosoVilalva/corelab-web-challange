@@ -1,13 +1,15 @@
 import { ContentCard } from './StyleCard'
 
 interface ICardProps {
-  children: React.ReactNode;
+  title: string
+  task: string
 }
 
-const Card:React.FC<ICardProps> = ({children}) => {
+const Card: React.FC<ICardProps> = ({title, task}) => {
   return (
     <ContentCard>
-      {children}
+      <h1>{title}</h1>
+      <p>{task}</p>
     </ContentCard>
   )
 }
