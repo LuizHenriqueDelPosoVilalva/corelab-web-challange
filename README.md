@@ -15,6 +15,8 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 create a file in the root directory with the name (.env.local) and in this file copy and paste the following variables:
-
+```bash
 MONGODB_URI = mongodb+srv://corelabchallange:nAcUuKL0GFleznAd@cluster-db-corelabwebch.grjvcv0.mongodb.net/
+
 NEXT_PUBLIC_API_URL=""
+```
