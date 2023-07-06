@@ -5,3 +5,4 @@ export default withJoi({
     return res.status(400).send(error.details)
   }
 })
+

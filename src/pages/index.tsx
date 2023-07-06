@@ -47,7 +47,7 @@ export default function Paginainicial() {
             setTitle('')
             setTask('')
 
-            // Chamar a função mutate para atualizar os dados em cache
+            // Chama a função mutate para atualizar os dados em cache
             mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post?limit=6`)
 
             // Mover o foco de volta para o <input>
