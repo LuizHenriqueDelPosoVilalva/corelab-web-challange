@@ -7,10 +7,10 @@ export const createPostSchema = Joi.object({
 });
 
 export const deletePostSchema = Joi.object({
-  id: Joi.string().required().custom((value, helpers) => {
+  id: Joi.custom((value, helpers) => {
     if (!mongoose.Types.ObjectId.isValid(value)) {
       return helpers.error('any.invalid');
     }
     return value;
-  })
-});
+  }).required()
+})

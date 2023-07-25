@@ -29,7 +29,7 @@ handler
     }
   })
 
-  .delete(validation({body:deletePostSchema}), async (req: NextApiRequest, res: NextApiResponse) => {
+  .delete(validation(deletePostSchema), async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       const deletedPost= await deletePost(req.body.id)
       if(deletedPost)

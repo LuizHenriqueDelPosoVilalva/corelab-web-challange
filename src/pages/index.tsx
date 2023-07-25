@@ -61,6 +61,8 @@ export default function Paginainicial() {
   }
   const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/post?limit=6`, fetcher)
 
+  console.log(data)
+
   return (
     <>
       <Navbar />

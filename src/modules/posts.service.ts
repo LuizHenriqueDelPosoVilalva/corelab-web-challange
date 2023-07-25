@@ -19,7 +19,7 @@ export const getPosts = async (limit = 6) => {
     .limit(limit);
 }
 
-export const deletePost = async (id: ObjectId) => {
+export const deletePost = async (id) => {
   return await Post.findOneAndDelete({
     _id: id,
   })

@@ -10,8 +10,18 @@ import DeletePost from '../menus/DeletePost'
 const Card: React.FC<ICardProps> = ({title, task, id}) => {
   const { mutate } = useSWRConfig()
 
-  const handleDelete = () => {
-   console.log("Post Deletado")
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, {
+        data: {
+          id
+        }
+      })
+      if (response.status === 200)
+        mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post`)
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   return (
