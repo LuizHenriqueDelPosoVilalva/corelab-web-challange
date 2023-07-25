@@ -1,5 +1,5 @@
-import Joi from 'joi';
-import mongoose from 'mongoose';
+const Joi = require('@hapi/joi')
+Joi.objectId = require('joi-objectid')(Joi)
 
 export const createPostSchema = Joi.object({
   title: Joi.string().required().max(20),
@@ -7,10 +7,5 @@ export const createPostSchema = Joi.object({
 });
 
 export const deletePostSchema = Joi.object({
-  id: Joi.custom((value, helpers) => {
-    if (!mongoose.Types.ObjectId.isValid(value)) {
-      return helpers.error('any.invalid');
-    }
-    return value;
-  }).required()
+  id: Joi.objectId().required()
 })

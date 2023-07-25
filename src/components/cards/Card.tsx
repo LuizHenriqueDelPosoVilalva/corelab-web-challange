@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { useSWRConfig } from 'swr'
 
-
 import { ContentCard, StyleTitle, StyleText, StyleButton, ContainerButtonsCards } from './StyleCard'
 import { ICardProps } from '../../interface/postInterface'
 
@@ -12,13 +11,9 @@ const Card: React.FC<ICardProps> = ({title, task, id}) => {
 
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, {
-        data: {
-          id
-        }
-      })
+      const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/post/post?id=${id}`)
       if (response.status === 200)
-        mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post`)
+        mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post/post?id=${id}`)
     } catch (err) {
       console.error(err)
     }

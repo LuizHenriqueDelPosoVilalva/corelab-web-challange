@@ -19,5 +19,5 @@ export interface IMapPost {
 export interface ICardProps {
   title: string,
   task: string,
-  id: number,
+  id: string,
 }
