@@ -11,9 +11,9 @@ const Card: React.FC<ICardProps> = ({title, task, id}) => {
 
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/post/post?id=${id}`)
+      const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/post?id=${id}`)
       if (response.status === 200)
-        mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post/post?id=${id}`)
+        mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post?id=${id}`)
     } catch (err) {
       console.error(err)
     }
