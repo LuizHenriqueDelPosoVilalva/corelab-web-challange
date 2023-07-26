@@ -32,7 +32,7 @@ handler
   .delete(validation(deletePostSchema), async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       const { id } = req.query
-      const deletedPost = deletePost(id)
+      const deletedPost = await deletePost(id)
       if(deletedPost)
         return res.status(200).send({ ok: true })
 
