@@ -5,11 +5,14 @@ import { useSWRConfig } from 'swr'
 import { ContentCard, StyleTitle, StyleText, StyleButton, ContainerButtonsCards } from './StyleCard'
 import { ICardProps } from '../../interface/postInterface'
 
-import DeletePost from '../menus/Menu'
 import Menu from '../menus/Menu'
 
 const Card: React.FC<ICardProps> = ({title, task, id}) => {
   const { mutate } = useSWRConfig()
+
+  const handleEdit = () => {
+    console.log("OPAAAAAAAAAA")
+  }
 
   const handleDelete = async () => {
     try {
@@ -39,6 +42,13 @@ const Card: React.FC<ICardProps> = ({title, task, id}) => {
                 width: 15,
                 height: 15,
                 onClick: handleDelete
+              },
+              {
+                src: '/icons/edit.svg',
+                alt: 'iconEdit',
+                width: 15,
+                height: 15,
+                onClick: handleEdit
               }
             ]}
           />

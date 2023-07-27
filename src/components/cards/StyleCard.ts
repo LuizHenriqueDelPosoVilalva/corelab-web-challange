@@ -36,8 +36,8 @@ export const StyleText = styled.div `
 `
 
 export const StyleButton = styled.button `
-  background-color: #FFFFFF;
   border: none;
+  width: 100%;
   cursor: pointer;
 `
 

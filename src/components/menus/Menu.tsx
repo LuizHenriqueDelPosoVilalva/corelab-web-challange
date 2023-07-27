@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { StyleContainerMenu } from './MenusStyles'
+import { StyleContainerMenu, StyledImageIcons } from './MenusStyles'
 
 function Menu({ options = [] }) {
 
@@ -13,7 +13,7 @@ function Menu({ options = [] }) {
     <StyleContainerMenu>
       {
          options.map((option, pos) => 
-          <Image 
+          <StyledImageIcons 
             src={option.src} 
             alt={option.alt} 
             width={option.width}
