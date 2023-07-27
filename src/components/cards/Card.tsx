@@ -1,13 +1,20 @@
 import axios from 'axios'
+import { useState } from 'react'
 import { useSWRConfig } from 'swr'
 
 import { ContentCard, StyleTitle, StyleText, StyleButton, ContainerButtonsCards } from './StyleCard'
 import { ICardProps } from '../../interface/postInterface'
 
 import DeletePost from '../menus/DeletePost'
+import EditPost from '../menus/EditPost'
 
 const Card: React.FC<ICardProps> = ({title, task, id}) => {
   const { mutate } = useSWRConfig()
+  const [editPost, setEditPost] = useState(false)
+
+  const handleEdit = () => {
+    console.log("EDIT")
+  }
 
   const handleDelete = async () => {
     try {
@@ -33,6 +40,15 @@ const Card: React.FC<ICardProps> = ({title, task, id}) => {
             options={[
               {
                 onClick: handleDelete
+              }
+            ]}
+          />
+        </StyleButton>
+        <StyleButton>
+          <EditPost 
+            options={[
+              {
+                onClick: handleEdit
               }
             ]}
           />
