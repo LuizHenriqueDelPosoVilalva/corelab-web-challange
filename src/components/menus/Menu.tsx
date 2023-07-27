@@ -2,22 +2,23 @@ import Image from 'next/image'
 
 import { StyleContainerMenu } from './MenusStyles'
 
-function DeletePost ({ options = [] }) {
+function Menu({ options = [] }) {
 
   const handleClick= (onClick: any) => {
     onClick()
   }
+
 
   return (
     <StyleContainerMenu>
       {
          options.map((option, pos) => 
           <Image 
-            src="/icons/delete.svg" 
-            alt="iconDelete" 
-            width={15}
-            height={15}
-            key={`menu-delete${pos}`}
+            src={option.src} 
+            alt={option.alt} 
+            width={option.width}
+            height={option.height}
+            key={`menu${pos}`}
             onClick={() => handleClick(option.onClick)}
           />
         )
@@ -26,4 +27,4 @@ function DeletePost ({ options = [] }) {
   )
 }
 
-export default DeletePost
+export default Menu

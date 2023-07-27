@@ -5,16 +5,11 @@ import { useSWRConfig } from 'swr'
 import { ContentCard, StyleTitle, StyleText, StyleButton, ContainerButtonsCards } from './StyleCard'
 import { ICardProps } from '../../interface/postInterface'
 
-import DeletePost from '../menus/DeletePost'
-import EditPost from '../menus/EditPost'
+import DeletePost from '../menus/Menu'
+import Menu from '../menus/Menu'
 
 const Card: React.FC<ICardProps> = ({title, task, id}) => {
   const { mutate } = useSWRConfig()
-  const [editPost, setEditPost] = useState(false)
-
-  const handleEdit = () => {
-    console.log("EDIT")
-  }
 
   const handleDelete = async () => {
     try {
@@ -36,19 +31,14 @@ const Card: React.FC<ICardProps> = ({title, task, id}) => {
       </StyleText>
       <ContainerButtonsCards>
         <StyleButton>
-          <DeletePost
+          <Menu
             options={[
               {
+                src: '/icons/delete.svg',
+                alt: 'iconDelete',
+                width: 15,
+                height: 15,
                 onClick: handleDelete
-              }
-            ]}
-          />
-        </StyleButton>
-        <StyleButton>
-          <EditPost 
-            options={[
-              {
-                onClick: handleEdit
               }
             ]}
           />
