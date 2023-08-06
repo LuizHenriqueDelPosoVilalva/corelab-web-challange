@@ -2,16 +2,18 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useSWRConfig } from 'swr'
 
-import { ContentCard, StyleTitle, StyleText, StyleButton, ContainerButtonsCards } from './StyleCard'
+import { ContentCard, StyleContent, StyleButton, ContainerButtonsCards } from './StyleCard'
 import { ICardProps } from '../../interface/postInterface'
+import EditPost from './EditPost'
 
 import Menu from '../menus/Menu'
 
 const Card: React.FC<ICardProps> = ({title, task, id}) => {
   const { mutate } = useSWRConfig()
+  const [editPost, setEditPost] = useState(false)
 
   const handleEdit = () => {
-    console.log("OPAAAAAAAAAA")
+   setEditPost(true)
   }
 
   const handleDelete = async () => {
@@ -26,12 +28,12 @@ const Card: React.FC<ICardProps> = ({title, task, id}) => {
 
   return (
     <ContentCard>
-      <StyleTitle>
-        <h1>{title}</h1>
-      </StyleTitle>
-      <StyleText>
-        <p>{task}</p>
-      </StyleText>
+      <StyleContent>
+        <h1>{!editPost && title}</h1>
+        <h1>{editPost && <EditPost />}</h1>
+        <p>{!editPost && task}</p>
+        <p>{editPost && !task}</p>
+      </StyleContent>
       <ContainerButtonsCards>
         <StyleButton>
           <Menu
@@ -39,15 +41,11 @@ const Card: React.FC<ICardProps> = ({title, task, id}) => {
               {
                 src: '/icons/delete.svg',
                 alt: 'iconDelete',
-                width: 15,
-                height: 15,
                 onClick: handleDelete
               },
               {
                 src: '/icons/edit.svg',
                 alt: 'iconEdit',
-                width: 15,
-                height: 15,
                 onClick: handleEdit
               }
             ]}

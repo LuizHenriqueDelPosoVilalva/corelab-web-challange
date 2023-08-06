@@ -7,5 +7,3 @@ export const StyleContainerMenu = styled.div `
   display: flex;
   gap: 20px;
 `
-export const StyledImageIcons = styled(Image)`
-`

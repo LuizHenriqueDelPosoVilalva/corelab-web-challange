@@ -13,10 +13,10 @@ export const ContentCard = styled.div `
   }
 `
 
-export const StyleTitle = styled.div `
+export const StyleContent = styled.div `
   width: 100%;
+  height: 90%;
   border-radius: 20px 20px 0 0;
-  border-bottom: 1px solid #D9D9D9;
   padding: 10px;
 
   h1 {
@@ -24,25 +24,58 @@ export const StyleTitle = styled.div `
     font-weight: bold;
     color: #333333;
   }
-`
 
-export const StyleText = styled.div `
-  width: 100%;
-  height: 80%;
-  padding: 15px 20px;
-  font-size: 14px;
-  color: #4F4F4D;
-  word-wrap: break-word;
+  p {
+    width: 100%;
+    height:100%;
+    padding: 15px 20px;
+    font-size: 14px;
+    border-top: 1px solid #D9D9D9;
+    color: #4F4F4D;
+    word-wrap: break-word;
+  }
 `
 
 export const StyleButton = styled.button `
   border: none;
-  width: 100%;
   cursor: pointer;
 `
 
 export const ContainerButtonsCards = styled.div `
   display: flex;
   justify-content: space-between;
-  padding:10px
+  padding:10px;
+`
+
+export const ContentEditPost = styled.div `
+  background-color: #FFFFFF;
+  height: 100%;
+  width: 100%;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  textarea {
+    height: 100%;
+    border: none;
+    resize: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    padding: 15px 20px;
+    outline: none;
+  }
+
+  input {
+    padding: 10px;
+    outline: none;
+    color: #333333;
+    font-weight: bold;
+
+    ::placeholder {
+      color: #333333;
+      font-weight: bold;
+    }
+  }
 `
