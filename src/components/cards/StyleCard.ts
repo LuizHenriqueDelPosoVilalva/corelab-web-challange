@@ -30,7 +30,6 @@ export const StyleContent = styled.div `
     height:100%;
     padding: 15px 20px;
     font-size: 14px;
-    border-top: 1px solid #D9D9D9;
     color: #4F4F4D;
     word-wrap: break-word;
   }
@@ -48,19 +47,18 @@ export const ContainerButtonsCards = styled.div `
 `
 
 export const ContentEditPost = styled.div `
-  background-color: #FFFFFF;
   height: 100%;
   width: 100%;
 
   form {
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
 
   textarea {
-    height: 100%;
-    border: none;
     resize: none;
+    border-bottom: none;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     padding: 15px 20px;
@@ -70,8 +68,7 @@ export const ContentEditPost = styled.div `
   input {
     padding: 10px;
     outline: none;
-    color: #333333;
-    font-weight: bold;
+    border: none;
 
     ::placeholder {
       color: #333333;

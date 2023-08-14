@@ -13,7 +13,7 @@ const Card: React.FC<ICardProps> = ({title, task, id}) => {
   const [editPost, setEditPost] = useState(false)
 
   const handleEdit = () => {
-   setEditPost(true)
+   setEditPost(!editPost)
   }
 
   const handleDelete = async () => {
