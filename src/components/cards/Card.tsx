@@ -12,8 +12,13 @@ const Card: React.FC<ICardProps> = ({title, task, id}) => {
   const { mutate } = useSWRConfig()
   const [editPost, setEditPost] = useState(false)
 
-  const handleEdit = () => {
-   setEditPost(!editPost)
+  const handleEdit = async() => {
+   setEditPost(true)
+  }
+
+  const handleSaveEdit = () => {
+    setEditPost(false)
+    mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post?limit=6`)
   }
 
   const handleDelete = async () => {
@@ -30,7 +35,7 @@ const Card: React.FC<ICardProps> = ({title, task, id}) => {
     <ContentCard>
       <StyleContent>
         <h1>{!editPost && title}</h1>
-        <h1>{editPost && <EditPost />}</h1>
+        <h1>{editPost && <EditPost id={id} titulo={title} tarefa={task} onSave={handleSaveEdit}/>}</h1>
         <p>{!editPost && task}</p>
         <p>{editPost && !task}</p>
       </StyleContent>

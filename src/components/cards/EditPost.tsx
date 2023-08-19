@@ -1,8 +1,22 @@
 import { useState, useRef, ChangeEvent, KeyboardEvent } from 'react'
+import { useForm } from 'react-hook-form'
+import axios from 'axios'
+import { joiResolver } from '@hookform/resolvers/joi'
+
+import { createPostSchema } from '../../modules/post.schema'
+
+import { IEditPost } from '../../interface/postInterface'
 
 import { ContentEditPost } from './StyleCard'
 
-function EditPost () {
+
+const EditPost:React.FC<IEditPost> = ({ id, titulo, tarefa, onSave }) => {
+
+  const { handleSubmit }= useForm({
+    resolver: joiResolver(createPostSchema),
+    mode: 'all'
+  })
+
   const [title, setTitle] = useState('')
   const [task, setTask] = useState('')
   const titleRef = useRef<HTMLInputElement>(null)
@@ -25,14 +39,12 @@ function EditPost () {
         taskRef.current?.focus();
       } else {
         if (task.trim() !== '') {
-          // Aqui eu envio os dados para o banco de dados
-          // usando as variáveis "title" e "task"
-          const data = {
-            title: title,
-            task: task
-          }
           try {
-            //await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, data)
+            const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/post?id=${id}title=${titulo}task=${tarefa}`)
+
+            if (response.status === 200){
+              onSave()
+            }
             // Limpa os campos de entrada
             setTitle('')
             setTask('')
@@ -49,11 +61,10 @@ function EditPost () {
       }
     }
   }
-  //const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/post?limit=6`, fetcher)
 
   return (
     <ContentEditPost>
-      <form>
+      <form onSubmit={handleSubmit(handleKeyPress)}>
         <input
           type="text"
           name="title"

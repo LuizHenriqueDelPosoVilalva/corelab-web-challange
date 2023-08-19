@@ -1,8 +1,6 @@
-import { ObjectId } from 'mongoose';
-
 import Post from './Post.model'
 
-import { IPost } from '../interface/postInterface'
+import { IEditPost, IPost } from '../interface/postInterface'
 
 export const createPost = async (body: IPost) => {
   return await Post.create({
@@ -19,8 +17,18 @@ export const getPosts = async (limit = 6) => {
     .limit(limit);
 }
 
-export const deletePost = async (id) => {
+export const deletePost = async (id: any) => {
   return await Post.findOneAndDelete({
     _id: id
+  })
+}
+
+export const editPost= async (id: any, titulo: any, tarefa: any) => {
+  return await Post.findOneAndUpdate({
+    _id: id,
+    title: titulo,
+    task: tarefa,
+    
+    new: true
   })
 }

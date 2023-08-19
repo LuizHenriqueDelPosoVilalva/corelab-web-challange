@@ -5,7 +5,6 @@ export interface IPost {
 }
 
 export interface IDeletePost {
-  title: string
   id: string
 }
 
@@ -20,4 +19,11 @@ export interface ICardProps {
   title: string,
   task: string,
   id: string,
+}
+
+export interface IEditPost {
+  id: string,
+  titulo: string,
+  tarefa: string,
+  onSave: any;
 }
